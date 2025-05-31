@@ -1,7 +1,7 @@
 -- Checks for Measure the query performance
    -- before adding indexes:
        -- Booking queries
-ANALYZE SELECT * FROM Booking WHERE user_id = 'some-user-id' ORDER BY start_date;
+EXPLAIN ANALYZE SELECT * FROM Booking WHERE user_id = 'some-user-id' ORDER BY start_date;
 EXPLAIN SELECT * FROM Booking WHERE property_id = 'some-property-id' AND status = 'confirmed';
 
 -- Property queries
@@ -32,7 +32,7 @@ CREATE INDEX idx_property_pricepernight ON Property(pricepernight);
   -- After adding indexes:
 
 -- User Table
-ANAL:YZE SELECT * FROM User WHERE email = 'user@example.com';
+EXPLAIN ANALYZE  SELECT * FROM User WHERE email = 'user@example.com';
 ANALYZE SELECT * FROM User WHERE role = 'guest' ORDER BY created_at;
 
 -- Booking Table

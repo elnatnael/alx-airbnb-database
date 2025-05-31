@@ -1,4 +1,18 @@
-uii-- User Table Indexes
+-- Checks for Measure the query performance
+   -- before adding indexes:
+       -- Booking queries
+ANALYZE SELECT * FROM Booking WHERE user_id = 'some-user-id' ORDER BY start_date;
+EXPLAIN SELECT * FROM Booking WHERE property_id = 'some-property-id' AND status = 'confirmed';
+
+-- Property queries
+EXPLAIN SELECT * FROM Property WHERE location = 'New York' ORDER BY pricepernight;
+EXPLAIN SELECT * FROM Property WHERE host_id = 'some-host-id';
+
+-- User queries
+EXPLAIN SELECT * FROM User WHERE email = 'user@example.com';
+EXPLAIN SELECT * FROM User WHERE role = 'guest' ORDER BY created_at;
+
+-- User Table Indexes
 CREATE UNIQUE INDEX idx_user_email ON User(email);
 CREATE INDEX idx_user_role ON User(role);
 
@@ -14,18 +28,6 @@ CREATE INDEX idx_property_location ON Property(location);
 CREATE INDEX idx_property_pricepernight ON Property(pricepernight);
 
 -- Checks for Measure the query performance
-   -- before adding indexes:
-       -- Booking queries
-ANALYZE SELECT * FROM Booking WHERE user_id = 'some-user-id' ORDER BY start_date;
-EXPLAIN SELECT * FROM Booking WHERE property_id = 'some-property-id' AND status = 'confirmed';
-
--- Property queries
-EXPLAIN SELECT * FROM Property WHERE location = 'New York' ORDER BY pricepernight;
-EXPLAIN SELECT * FROM Property WHERE host_id = 'some-host-id';
-
--- User queries
-EXPLAIN SELECT * FROM User WHERE email = 'user@example.com';
-EXPLAIN SELECT * FROM User WHERE role = 'guest' ORDER BY created_at;
 
   -- After adding indexes:
 

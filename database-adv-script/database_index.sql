@@ -14,7 +14,7 @@ CREATE INDEX idx_property_location ON Property(location);
 CREATE INDEX idx_property_pricepernight ON Property(pricepernight);
 
 -- Checks for Measure the query performance
-    before adding indexes:
+   -- before adding indexes:
        -- Booking queries
 ANALYZE SELECT * FROM Booking WHERE user_id = 'some-user-id' ORDER BY start_date;
 EXPLAIN SELECT * FROM Booking WHERE property_id = 'some-property-id' AND status = 'confirmed';
@@ -27,10 +27,10 @@ EXPLAIN SELECT * FROM Property WHERE host_id = 'some-host-id';
 EXPLAIN SELECT * FROM User WHERE email = 'user@example.com';
 EXPLAIN SELECT * FROM User WHERE role = 'guest' ORDER BY created_at;
 
-   After adding indexes:
+  -- After adding indexes:
 
 -- User Table
-ANALYZE SELECT * FROM User WHERE email = 'user@example.com';
+ANAL:YZE SELECT * FROM User WHERE email = 'user@example.com';
 ANALYZE SELECT * FROM User WHERE role = 'guest' ORDER BY created_at;
 
 -- Booking Table
